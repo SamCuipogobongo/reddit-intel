@@ -1,5 +1,9 @@
 # Reddit Intel
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
+[![Powered by Trellis](https://img.shields.io/badge/Powered%20by-Trellis-blue)](https://github.com/mindfold-ai/Trellis)
+
 一套 Claude Code skill，帮你从 Reddit 挖掘竞品情报和用户痛点。直接、高效、数据驱动。
 
 ## 它能做什么
@@ -137,6 +141,16 @@ reddit-intel/
 │       └── comments.jsonl             # 54 comments
 ├── SKILL.md                           # 完整参考
 └── LICENSE                            # MIT
+```
+
+## Built with Trellis
+
+reddit-intel 本身就是用 [Trellis](https://github.com/mindfold-ai/Trellis) 开发的 —— 一个开源的 AI 开发框架，让 Claude Code 和 Cursor 真正理解你的代码库。
+
+如果你喜欢 reddit-intel 的 skill 架构，Trellis 可以帮你构建更多类似的自动化工作流。
+
+```bash
+npm install -g @mindfoldhq/trellis@latest
 ```
 
 ## License
