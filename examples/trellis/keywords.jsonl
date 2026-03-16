@@ -1,0 +1,45 @@
+{"keyword": "context loss", "category": "pain", "reddit_usage": "Claude keeps forgetting my project context", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "context amnesia", "category": "pain", "reddit_usage": "AI has amnesia every new session", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "forgets CLAUDE.md", "category": "pain", "reddit_usage": "Claude ignores CLAUDE.md after auto-compact", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "auto-compact", "category": "pain", "reddit_usage": "auto-compact wipes all my context", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "context gap", "category": "pain", "reddit_usage": "huge context gap between sessions", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "repeating myself to AI", "category": "pain", "reddit_usage": "I keep repeating the same instructions every session", "source": "r/ChatGPTCoding", "added": "2026-02-06"}
+{"keyword": "AI ignores conventions", "category": "pain", "reddit_usage": "Claude keeps using camelCase when I told it snake_case", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "inconsistent AI output", "category": "pain", "reddit_usage": "AI output is wildly inconsistent between sessions", "source": "r/cursor", "added": "2026-02-06"}
+{"keyword": "AI forgets rules", "category": "pain", "reddit_usage": "AI forgets my coding rules mid-conversation", "source": "r/ChatGPTCoding", "added": "2026-02-06"}
+{"keyword": "long context problems", "category": "pain", "reddit_usage": "once conversation gets long, Claude forgets everything", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": ".cursorrules", "category": "tool", "reddit_usage": "my .cursorrules file is getting huge", "source": "r/cursor", "added": "2026-02-06"}
+{"keyword": "CLAUDE.md", "category": "tool", "reddit_usage": "how to structure CLAUDE.md effectively", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "Claude Code workflow", "category": "tool", "reddit_usage": "what's your Claude Code workflow?", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "Cursor rules", "category": "tool", "reddit_usage": "share your Cursor rules setup", "source": "r/cursor", "added": "2026-02-06"}
+{"keyword": "Claude Code tips", "category": "tool", "reddit_usage": "best tips for Claude Code productivity", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "AI coding assistant setup", "category": "tool", "reddit_usage": "how do you set up your AI coding assistant?", "source": "r/ChatGPTCoding", "added": "2026-02-06"}
+{"keyword": "prompt engineering for code", "category": "tool", "reddit_usage": "prompt engineering tips for coding with AI", "source": "r/ChatGPTCoding", "added": "2026-02-06"}
+{"keyword": "vibe coding", "category": "scenario", "reddit_usage": "vibe coding with Claude is amazing but chaotic", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "AI pair programming", "category": "scenario", "reddit_usage": "AI pair programming is my new workflow", "source": "r/programming", "added": "2026-02-06"}
+{"keyword": "agent consistency", "category": "scenario", "reddit_usage": "how to keep AI agent output consistent across tasks", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "spec-driven development", "category": "scenario", "reddit_usage": "spec-driven development with AI coding assistants", "source": "r/programming", "added": "2026-02-06"}
+{"keyword": "AI coding at scale", "category": "scenario", "reddit_usage": "using AI coding assistants at scale in a team", "source": "r/webdev", "added": "2026-02-06"}
+{"keyword": "multi-agent development", "category": "scenario", "reddit_usage": "running multiple AI agents on different features", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "AI coding for teams", "category": "scenario", "reddit_usage": "how does your team use AI coding tools?", "source": "r/webdev", "added": "2026-02-06"}
+{"keyword": "specs as code", "category": "solution", "reddit_usage": "treating specs as code that AI can read", "source": "r/programming", "added": "2026-02-06"}
+{"keyword": "auto-inject context", "category": "solution", "reddit_usage": "auto-inject project context into every AI session", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "structured AI workflow", "category": "solution", "reddit_usage": "structured workflow for AI-assisted development", "source": "r/webdev", "added": "2026-02-06"}
+{"keyword": "AI project memory", "category": "solution", "reddit_usage": "giving AI persistent memory about your project", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "coding standards for AI", "category": "solution", "reddit_usage": "define coding standards that AI actually follows", "source": "r/programming", "added": "2026-02-06"}
+{"keyword": "git worktree AI", "category": "solution", "reddit_usage": "using git worktrees for parallel AI agent sessions", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "context rot", "category": "pain", "reddit_usage": "context rot — AI gets worse the longer you chat", "source": "web/producttalk.org", "added": "2026-02-06"}
+{"keyword": "context window limit", "category": "pain", "reddit_usage": "hit the invisible wall with Claude context window", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "MCP context bloat", "category": "pain", "reddit_usage": "MCP tools eating 51K tokens of context", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "conversation too long", "category": "pain", "reddit_usage": "Claude hit the maximum length for this conversation", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "context duplication worktree", "category": "pain", "reddit_usage": "worktree reads both CLAUDE.md files, doubles context", "source": "GitHub Issues", "added": "2026-02-06"}
+{"keyword": "Claude Code vs Cursor", "category": "tool", "reddit_usage": "honest comparison: Claude Code vs Cursor in 2026", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "persistent memory", "category": "tool", "reddit_usage": "persistent memory between Claude Code sessions", "source": "GitHub Issues", "added": "2026-02-06"}
+{"keyword": "Claude Code subagents", "category": "tool", "reddit_usage": "custom subagents for Claude Code", "source": "docs.claude.com", "added": "2026-02-06"}
+{"keyword": "Claude Code tasks", "category": "tool", "reddit_usage": "Tasks update lets agents work longer and coordinate", "source": "r/ClaudeAI", "added": "2026-02-06"}
+{"keyword": "parallel Claude sessions", "category": "scenario", "reddit_usage": "running multiple Claude Code sessions in parallel with git worktree", "source": "dev.to", "added": "2026-02-06"}
+{"keyword": "vibe coding quality", "category": "scenario", "reddit_usage": "vibe coding creates unmaintainable code without specs", "source": "r/programming", "added": "2026-02-06"}
+{"keyword": "AI code review", "category": "scenario", "reddit_usage": "my job shifted from write code to review AI code", "source": "r/programming", "added": "2026-02-06"}
+{"keyword": "task-based coordination", "category": "solution", "reddit_usage": "CLAUDE_CODE_TASK_LIST_ID for multi-instance coordination", "source": "docs.claude.com", "added": "2026-02-06"}
+{"keyword": "context compression", "category": "solution", "reddit_usage": "layered context with compression beats monolithic .cursorrules", "source": "r/cursor", "added": "2026-02-06"}
+{"keyword": "silent context capture", "category": "solution", "reddit_usage": "memory-mcp ensures Claude never forgets via silent capture", "source": "r/ClaudeAI", "added": "2026-02-06"}
