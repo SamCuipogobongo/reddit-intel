@@ -145,7 +145,11 @@ reddit-intel/
 
 ## Built with Trellis
 
-reddit-intel 本身就是用 [Trellis](https://github.com/mindfold-ai/Trellis) 开发的 —— 一个开源的 AI 开发框架，让 Claude Code 和 Cursor 真正理解你的代码库。
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mindfold-ai/Trellis/main/assets/trellis.png" alt="Trellis" width="600">
+</p>
+
+reddit-intel 是使用 [Trellis](https://github.com/mindfold-ai/Trellis) 开发的 —— 一个开源的 AI 开发框架，让 Claude Code 和 Cursor 真正理解你的代码库。
 
 如果你喜欢 reddit-intel 的 skill 架构，Trellis 可以帮你构建更多类似的自动化工作流。
 
