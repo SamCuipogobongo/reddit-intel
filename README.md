@@ -1,35 +1,76 @@
 # reddit-intel
 
-A set of Claude Code skills for Reddit competitive intelligence. Discover how your target users describe their pain points, find relevant communities, track posts with real complaints, and extract competitor mentions and unmet needs — all in incrementally-growing JSONL files.
+Turn Reddit into a competitive intelligence machine — right from your terminal.
 
-Works for any product. Trellis is included as a real-world example.
+reddit-intel is a set of [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills that automatically discover how real users talk about problems your product solves, what communities they hang out in, which competitors get mentioned, and what needs remain unmet.
+
+All data accumulates in git-friendly JSONL files. Run today, run next week — it only grows.
 
 ---
 
-## What it does
+## How it works
 
-4 independent commands, each a standalone Claude Code skill:
+```
+/reddit-kw                        /reddit-sub
+  Discover pain-point keywords  →   Find relevant subreddits
+  from Reddit user language         where your users live
+        │                                  │
+        └──────────┬───────────────────────┘
+                   ▼
+             /reddit-fp
+               Search tier 1/2 subreddits
+               for posts matching keywords
+                   │
+                   ▼
+             /reddit-ac
+               Analyze comment sections:
+               • Competitor mentions + sentiment
+               • Verbatim user quotes (copy material)
+               • Unmet needs your product could solve
+                   │
+                   ▼
+         JSONL (data) + Markdown (display)
+         ── git tracked, always growing ──
+```
 
-| Command | What it does |
-|---------|-------------|
-| `/reddit-kw` | Discover how Reddit users describe pain points in your domain |
-| `/reddit-sub` | Find subreddits where your target users live |
-| `/reddit-fp` | Search for posts with pain points matching your product |
-| `/reddit-ac` | Extract competitor mentions, user language, unmet needs from comments |
+4 independent commands. Each is a standalone Claude Code skill — call any one at any time, in any order.
 
-Plus `/reddit-intel-init` for first-time setup.
+---
 
-Each command is idempotent and incremental. Run it today, run it again next week — data only grows, never overwrites. All output is stored as JSONL (queryable data) and rendered to Markdown (human-readable).
+## What you get
+
+**keywords.jsonl** — How Reddit users actually phrase their pain:
+```json
+{"keyword": "context loss", "category": "pain", "reddit_usage": "Claude keeps forgetting my project context", "source": "r/ClaudeAI"}
+```
+
+**subreddits.jsonl** — Where to find them, rated by tier:
+```json
+{"name": "r/ClaudeAI", "tier": 1, "members": "451K", "promo_policy": "discussion OK", "strategy": "Pain-point replies"}
+```
+
+**posts.jsonl** — Active discussions about problems you solve:
+```json
+{"title": "200K context just ain't cutting it", "subreddit": "r/ClaudeAI", "upvotes": 85, "pain_category": "context_loss", "product_solution": "Layered context architecture"}
+```
+
+**comments.jsonl** — Competitive intelligence from comment sections:
+```json
+{"type": "competitor", "content": "I switched to Cursor when hitting token limits", "competitor": "Cursor", "sentiment": "positive", "insight": "Cursor used as fallback"}
+{"type": "language", "content": "compacting process straight-up nukes crucial context", "insight": "Users frame compaction as lossy compression"}
+{"type": "need", "content": "Need persistent memory across sessions", "insight": "Core unmet need — file-based injection solves this"}
+```
+
+Every JSONL file also renders to a Markdown report for human reading.
 
 ---
 
 ## Prerequisites
 
-**Claude Code** with the **Exa MCP server** configured.
+1. **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** installed
+2. **[Exa](https://exa.ai) MCP server** — required because Reddit blocks Anthropic's default crawler
 
-Exa is required because Reddit blocks Anthropic's default web crawler.
-
-Add Exa MCP to your `~/.claude.json` or project `.claude/settings.json`:
+Add Exa to your Claude Code config (`~/.claude.json` or `.claude/settings.json`):
 
 ```json
 {
@@ -37,98 +78,72 @@ Add Exa MCP to your `~/.claude.json` or project `.claude/settings.json`:
     "exa": {
       "command": "npx",
       "args": ["-y", "exa-mcp-server"],
-      "env": {
-        "EXA_API_KEY": "your-exa-api-key"
-      }
+      "env": { "EXA_API_KEY": "your-key-from-exa.ai" }
     }
   }
 }
 ```
 
-Get an Exa API key at [exa.ai](https://exa.ai).
-
 ---
 
 ## Installation
 
-Clone the repo and symlink each command into your Claude Code skills directory:
-
 ```bash
+# Clone
 git clone https://github.com/SamCuipogobongo/reddit-intel ~/.claude/skills/reddit-intel
 
-# Symlink each command as a separate skill
-ln -s ~/.claude/skills/reddit-intel/commands/reddit-intel-init ~/.claude/skills/reddit-intel-init
-ln -s ~/.claude/skills/reddit-intel/commands/reddit-kw ~/.claude/skills/reddit-kw
-ln -s ~/.claude/skills/reddit-intel/commands/reddit-sub ~/.claude/skills/reddit-sub
-ln -s ~/.claude/skills/reddit-intel/commands/reddit-fp ~/.claude/skills/reddit-fp
-ln -s ~/.claude/skills/reddit-intel/commands/reddit-ac ~/.claude/skills/reddit-ac
+# Symlink each command as a standalone skill
+for cmd in reddit-intel-init reddit-kw reddit-sub reddit-fp reddit-ac; do
+  ln -s ~/.claude/skills/reddit-intel/commands/$cmd ~/.claude/skills/$cmd
+done
 ```
 
-After this, all 5 commands are available in any Claude Code session:
-- `/reddit-intel-init` — First-time setup
-- `/reddit-kw` — Expand keywords
-- `/reddit-sub` — Discover subreddits
-- `/reddit-fp` — Find posts (accepts optional topic, e.g., `/reddit-fp context loss`)
-- `/reddit-ac` — Analyze comments
+Done. Five slash commands are now available in every Claude Code session.
 
 ---
 
-## Quick Start
+## Quick start
 
-### 1. Initialize
-
+**Step 1** — Initialize in your project:
 ```
 /reddit-intel-init
 ```
+Creates `.reddit-intel.json` + a `product-context.md` template.
 
-Creates `.reddit-intel.json` config + `reddit-intel/product-context.md` template.
+**Step 2** — Fill in `product-context.md` with your product's pain points, value props, and target users. See [`examples/trellis/product-context.md`](examples/trellis/product-context.md) for a real example.
 
-### 2. Fill in product context
-
-Edit `reddit-intel/product-context.md` with your product info:
-- What your product does
-- Core value propositions
-- Pain categories your product solves
-
-See `examples/trellis/product-context.md` for a complete example.
-
-### 3. Run the commands
-
+**Step 3** — Run:
 ```
-/reddit-kw              # discover keywords
-/reddit-sub             # find communities
-/reddit-fp              # search for posts
-/reddit-fp context loss # search for posts about a specific topic
-/reddit-ac              # analyze comment sections
+/reddit-kw                 # discover keywords
+/reddit-sub                # find communities
+/reddit-fp                 # search for posts
+/reddit-fp context loss    # ...or focus on a specific topic
+/reddit-ac                 # analyze comment sections
 ```
+
+Each command reads existing data, searches for new entries, deduplicates, appends, and re-renders. Repeat as often as you like.
 
 ---
 
-## Repo Structure
+## Repo structure
 
 ```
 reddit-intel/
-├── commands/                          # 5 independent Claude Code skills
+├── commands/                          # 5 standalone Claude Code skills
 │   ├── reddit-intel-init/SKILL.md     # /reddit-intel-init
 │   ├── reddit-kw/SKILL.md            # /reddit-kw
 │   ├── reddit-sub/SKILL.md           # /reddit-sub
 │   ├── reddit-fp/SKILL.md            # /reddit-fp
 │   └── reddit-ac/SKILL.md            # /reddit-ac
 ├── scripts/
-│   └── jsonl_ops.py                   # Shared JSONL operations
+│   └── jsonl_ops.py                   # Shared: append, render, stats, init
 ├── references/
-│   ├── step-details.md                # Detailed execution logic per step
-│   ├── product-context.template.md    # English product context template
-│   └── product-context.template.zh.md # Chinese product context template
+│   ├── step-details.md                # Detailed search strategies per step
+│   ├── product-context.template.md    # English template
+│   └── product-context.template.zh.md # Chinese template
 ├── examples/
-│   └── trellis/                       # Real-world example data
-│       ├── product-context.md
-│       ├── keywords.jsonl             # 45 keywords
-│       ├── subreddits.jsonl           # 53 subreddits
-│       ├── posts.jsonl                # 44 posts
-│       └── comments.jsonl             # 54 comments
-├── SKILL.md                           # Full reference (all steps in one file)
-├── README.md
+│   └── trellis/                       # Real-world example (see below)
+├── SKILL.md                           # Full reference (all steps in one doc)
 └── LICENSE                            # MIT
 ```
 
@@ -136,7 +151,7 @@ reddit-intel/
 
 ## Configuration
 
-`.reddit-intel.json` is created by `/reddit-intel-init` in your project root:
+`.reddit-intel.json` — created by `/reddit-intel-init`:
 
 ```json
 {
@@ -147,37 +162,32 @@ reddit-intel/
 }
 ```
 
-| Field | Default | Description |
-|-------|---------|-------------|
-| `data_dir` | `./reddit-intel/data` | Where JSONL and Markdown files are stored |
-| `product_name` | `MyProduct` | Used in rendered Markdown headers |
-| `product_context` | `./reddit-intel/product-context.md` | Path to your filled product context |
-| `language` | `en` | Output language: `en` or `zh` |
+| Field | Description |
+|-------|-------------|
+| `data_dir` | Where JSONL + Markdown files live |
+| `product_name` | Appears in rendered Markdown headers |
+| `product_context` | Your filled-in product context file |
+| `language` | `en` or `zh` — all output labels adapt |
 
 ---
 
-## Data Files
+## Real-world example: Trellis
 
-| File | Unique Key | Description |
-|------|-----------|-------------|
-| `keywords.jsonl` | `keyword` | Pain-point keywords with Reddit usage quotes |
-| `subreddits.jsonl` | `name` | Communities with tier, activity, and strategy |
-| `posts.jsonl` | `url` | Posts with pain category and product solution |
-| `comments.jsonl` | `post_url` + `content[:50]` | Competitor / language / need insights |
+[`examples/trellis/`](examples/trellis/) contains actual data from running reddit-intel for [Trellis](https://github.com/mindfold-ai/Trellis), an open-source AI development framework for Claude Code.
 
----
+After several weeks of incremental runs:
 
-## Example: Trellis
+| Data | Count | What it revealed |
+|------|-------|-----------------|
+| Keywords | 45 | "context rot", "AI amnesia", "compacting nukes context" — real user language |
+| Subreddits | 53 | r/ClaudeAI, r/ClaudeCode, r/ChatGPTCoding as tier 1; r/LocalLLaMA, r/cursor as tier 2 |
+| Posts | 44 | context_loss is the #1 pain category; 1M context window didn't solve it |
+| Comments | 54 | Cursor, Obsidian vaults, devctx MCP, Ember MCP as competitors; "quality tanks at 250-500K tokens" |
 
-The `examples/trellis/` directory contains real data from using reddit-intel for [Trellis](https://github.com/mindfold-ai/Trellis), an open-source AI development framework.
-
-- **45 keywords** across pain, tool, scenario, and solution categories
-- **53 subreddits** across 4 tiers
-- **44 posts** tracking active pain-point discussions
-- **54 comment insights** with competitor mentions, user language, and unmet needs
+This is the kind of intelligence base that accumulates — each run adds more signal.
 
 ---
 
 ## License
 
-MIT License. Copyright 2026 Sam Cui.
+MIT — Sam Cui, 2026
