@@ -7,12 +7,8 @@
 这套工具包含 5 个独立的 Claude Code skill，通过 Exa 搜索 Reddit，将用户语言、社区、帖子、评论转化为结构化的 JSONL 数据流，最终生成一份可操作的产品竞争分析报告。
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   /reddit-kw    │───▶│  /reddit-sub    │───▶│   /reddit-fp    │───▶│   /reddit-ac    │
-│                 │    │                 │    │                 │    │                 │
-│ 痛点关键词      │    │ 目标社区        │    │ 痛点帖子        │    │ 评论分析        │
-│ keywords.jsonl  │    │ subreddits.jsonl│    │ posts.jsonl     │    │ comments.jsonl  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
+/reddit-kw           /reddit-sub          /reddit-fp           /reddit-ac
+keywords.jsonl  -->  subreddits.jsonl --> posts.jsonl     -->  comments.jsonl
 ```
 
 ## 核心命令
